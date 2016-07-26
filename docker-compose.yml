@@ -20,5 +20,3 @@ services:
       dockerfile: Dockerfile-toxiproxy-configurer
     depends_on:
       - mytoxiproxy
-    links:
-      - mytoxiproxy

@@ -33,7 +33,17 @@ Start all the containers in detached mode.
 docker-compose up -d
 ```
 
-Check the 'timecurl' container logs:
+You should see it create one network and four containers:
+
+```
+Creating network "toxiproxydockercomposeexample_default" with the default driver
+Creating toxiproxydockercomposeexample_mynginx_1
+Creating toxiproxydockercomposeexample_mytoxiproxy_1
+Creating toxiproxydockercomposeexample_mytoxiproxy-configurer_1
+Creating toxiproxydockercomposeexample_timecurl_1
+```
+
+Now check the 'timecurl' container logs:
 
 ```
 docker logs toxiproxydockercomposeexample_timecurl_1
@@ -45,9 +55,9 @@ You should see lines like the following:
 0.009 200 http://mytoxiproxy:22220/
 ```
 
-This is the output from the 'time-curl.sh' script, which calls curl and then prints out the time, response code, and url. 
+This is the output from the 'time-curl.sh' script.
 
-From this we can confirm that:
+From the above we can confirm that:
 
 - the URL shows that it is hitting nginx via toxiproxy,
 - the response code is 200, and 

@@ -14,10 +14,6 @@ services:
     image: shopify/toxiproxy
     expose:
       - "22220"
-      - "8474"
-    ports:
-      - "8474"
-      - "22220"
   mytoxiproxy-configurer:
     build: 
       context: .

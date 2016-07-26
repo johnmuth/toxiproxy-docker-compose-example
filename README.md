@@ -17,8 +17,6 @@ Four services are defined in docker-compose.yml:
 
 ### How to use
 
-Look at docker-compose.yml for 
-
 ```
 docker-compose up
 ```

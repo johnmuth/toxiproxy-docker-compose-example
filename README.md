@@ -23,23 +23,44 @@ Four services are defined in docker-compose.yml:
 
 - docker-compose
 
-## How to use
+### How to use - straight proxy, no added latency
+
+First, let's verify that everything works as expected with plain old straight-through proxying.
+
+Start all the containers in detached mode.
 
 ```
-docker-compose up
+docker-compose up -d
 ```
 
-If you see lines like the following, it is working:
+Check the 'timecurl' container logs:
 
 ```
-timecurl_1                | 0.009 200 http://mytoxiproxy:22220/
+docker logs toxiproxydockercomposeexample_timecurl_1
 ```
 
-This shows output from the container 'timecurl_1', which prints out the time, response code, and url. 
-The response code is 200, and the URL shows that it is hitting nginx via toxiproxy.
+You should see lines like the following:
 
-## TODO
+```
+0.009 200 http://mytoxiproxy:22220/
+```
 
-- add a delay to the proxy
+This is the output from the 'time-curl.sh' script, which calls curl and then prints out the time, response code, and url. 
+
+From this we can confirm that:
+
+- the URL shows that it is hitting nginx via toxiproxy,
+- the response code is 200, and 
+- the response time is 0.009 seconds.
+
+### Add latency
+
+Execute the following script to add 2 seconds latency to the proxy:
+
+```
+./add-latency.sh
+```
+
+Now check the 'timecurl' logs again, and you should see that the requests are taking ~2 seconds.
 
 

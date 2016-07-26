@@ -6,9 +6,7 @@ This is a simple demonstration of one way to use [toxiproxy](https://github.com/
 
 I wanted to test the behavior of an application when one of its dependencies - a database, a remote http API, etc. - is slow, or otherwise unreliable.
 
-Toxiproxy is a TCP proxy between your application and any dependency.
-
-But I couldn't quite get it to work with docker-compose, so I created this bare-bones project.
+Toxiproxy seems like a perfect tool for the job but I couldn't quite get it to work with docker-compose, so I created this bare-bones project.
 
 It might be possible to do this more simply, but it's the first thing I got working.
 

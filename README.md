@@ -1,8 +1,18 @@
 # toxiproxy-docker-compose-example
 
-This is a simple demonstration of one way to use toxiproxy with docker-compose.
+This is a simple demonstration of one way to use [toxiproxy](https://github.com/Shopify/toxiproxy) with [docker-compose](https://docs.docker.com/compose/).
+
+## Why?
+
+I wanted to test the behavior of an application when one of its dependencies - a database, a remote http API, etc. - is slow, or otherwise unreliable.
+
+Toxiproxy is a TCP proxy between your application and any dependency.
+
+But I couldn't quite get it to work with docker-compose, so I created this bare-bones project.
 
 It might be possible to do this more simply, but it's the first thing I got working.
+
+## Overview
 
 Four services are defined in docker-compose.yml:
 
@@ -11,11 +21,11 @@ Four services are defined in docker-compose.yml:
 - 'mytoxiproxy' : runs toxiproxy.
 - 'mytoxiproxy-configurer' : Configures the toxiproxy instance. It defines a single "proxy", to the nginx. 
 
-### Prerequisites
+## Prerequisites
 
 - docker-compose
 
-### How to use
+## How to use
 
 ```
 docker-compose up

@@ -1,0 +1,28 @@
+version: '2'
+services:
+  mynginx:
+    image: nginx
+  timecurl:
+    build: .
+    volumes:
+      - .:/timecurl
+    environment:
+      - TARGET_URL=http://mytoxiproxy:22220
+    depends_on:
+      - mytoxiproxy-configurer
+  mytoxiproxy:
+    image: shopify/toxiproxy
+    expose:
+      - "22220"
+      - "8474"
+    ports:
+      - "8474"
+      - "22220"
+  mytoxiproxy-configurer:
+    build: 
+      context: .
+      dockerfile: Dockerfile-toxiproxy-configurer
+    depends_on:
+      - mytoxiproxy
+    links:
+      - mytoxiproxy
